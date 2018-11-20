@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 
 import './Lists.css';
-import List from "../components/List-item";
+import ListItem from "../components/List-item";
+import { List } from "react-virtualized";
 import * as actions from "../store/actions";
 import Spinner from "../components/UI/Spinner/Spinner";
 
@@ -11,20 +12,25 @@ class Lists extends Component {
     this.props.onFetchData();
   }
 
+  renderRow({index, key, style}) {
+    return <ListItem key={key} style={style} index={index} />;
+  }
+
   displayListsOrSpinner = () => {
     let lists = <Spinner />;
     if (this.props.lists) {
-      lists = this.props.lists.map(item => {
+      // lists = this.props.lists.map(item => {
         return (
           <List
-            firstName={item.first_name}
-            lastName={item.last_name}
-            gender={item.gender}
-            email={item.email}
-            key={item.id}
-          />
+          className="m-auto"
+          width={800}
+          height={500}
+          rowHeight={150}
+          rowWidth={800}
+          rowRenderer={this.renderRow}
+          rowCount={this.props.lists.length} />
         );
-      });
+      // });
     }
     return lists;
   };
