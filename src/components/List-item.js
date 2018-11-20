@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import "./List-item.css";
 
@@ -16,9 +16,9 @@ const list = props => (
 );
 
 const mapStateToProps = state => {
-    return {
-        lists: state.lists
-    }
-}
+  return {
+    lists: state.lists
+  };
+};
 
 export default connect(mapStateToProps)(list);
