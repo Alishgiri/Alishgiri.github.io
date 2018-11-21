@@ -4,6 +4,10 @@
   overflow-y: auto;
 }
 
+.m-auto {
+  margin: 0 auto;
+}
+
 header {
   position: fixed;
   top: 0;
